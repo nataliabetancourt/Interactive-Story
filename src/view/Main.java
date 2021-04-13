@@ -1,4 +1,5 @@
 package view;
+import controller.PlayController;
 import processing.core.PApplet;
 
 public class Main extends PApplet{
@@ -18,6 +19,7 @@ public class Main extends PApplet{
 	StoryScreen storyScreen;
 	PlayScreen playScreen;
 	FinishScreen finishScreen;
+	PlayController controller;
 	
 	@Override
 	public void setup() {
@@ -29,6 +31,7 @@ public class Main extends PApplet{
 		storyScreen = new StoryScreen(this);
 		playScreen = new PlayScreen(this);
 		finishScreen = new FinishScreen(this);
+		controller = new PlayController(this);
 		
 	}
 	
@@ -45,12 +48,14 @@ public class Main extends PApplet{
 			break;
 		case 3:
 			playScreen.draw();
+			controller.draw();
 			break;
 		case 4:
 			finishScreen.draw();
 			break;
 		}
 		
+		System.out.println(mouseX + " , " + mouseY);
 	}
 	
 	public void mousePressed() {
