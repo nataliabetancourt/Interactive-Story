@@ -34,6 +34,8 @@ public class StartScreen {
 	public boolean clickButton() {
 		if (app.mouseX > xButton-width/2 && app.mouseX < xButton+width/2 && 
 				app.mouseY > yButton-width/2 && app.mouseY < yButton+width/2) {
+
+			//System.out.println("cambio pantalla");
 		}
 		return true;
 	}

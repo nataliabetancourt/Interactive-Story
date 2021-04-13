@@ -7,6 +7,7 @@ import processing.core.PImage;
 public class Potato extends Element{
 	
 	private PImage potato, bag, four;
+	private boolean visible;
 
 	public Potato(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
@@ -19,8 +20,10 @@ public class Potato extends Element{
 	}
 
 	public void draw() {
-		app.imageMode(PConstants.CENTER);
-		app.image(potato, posX, posY, height, width);
+		if (visible) {
+			app.imageMode(PConstants.CENTER);
+			app.image(potato, posX, posY, height, width);
+		}
 
 	}
 	
@@ -29,6 +32,10 @@ public class Potato extends Element{
 		app.image(bag, posX, posY, width, height);
 		app.image(four, posX+40, posY+60, 40, 40);
 
+	}
+	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }

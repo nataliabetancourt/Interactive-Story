@@ -1,6 +1,7 @@
 package view;
 import controller.PlayController;
 import processing.core.PApplet;
+import processing.event.MouseEvent;
 
 public class Main extends PApplet{
 
@@ -49,7 +50,7 @@ public class Main extends PApplet{
 		case 3:*/
 			playScreen.draw();
 			controller.draw();
-		/*	break;
+		/*break;
 		case 4:
 			finishScreen.draw();
 			break;
@@ -60,8 +61,9 @@ public class Main extends PApplet{
 	public void mousePressed() {
 		//BUTTONS TO TRANSITION FROM SCREENS
 			//Start button
-			if (startScreen.clickButton()) {
+			if (startScreen.clickButton() && screen == 1) {
 				screen = 2;
+				System.out.println("main");
 			}
 			//Next button
 			if (storyScreen.clickButton()) {
@@ -71,6 +73,11 @@ public class Main extends PApplet{
 			if (finishScreen.clickButton()) {
 				screen = 1;
 			}
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent event) {
+		controller.clickObjects();
 	}
 	
 	@Override

@@ -18,14 +18,22 @@ public class PlayController {
 		logic.draw();
 	}
 	
+	public void clickObjects() {
+		logic.clickRabbit();
+		logic.clickPlants();
+
+	}
+	
 	public void dragObjects() {
 		logic.dragOutfit();
 		logic.dragRabbit();
+		logic.dragPotato();
 	}
 	
 	public void releaseObjects() {
 		logic.releaseOutfit();
 		logic.releaseRabbit();
+		logic.releasePotato();
 	}
 
 }

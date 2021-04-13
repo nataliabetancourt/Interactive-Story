@@ -8,10 +8,12 @@ public class Rabbit extends Element{
 
 	private PImage rabbit, bag, three;
 	private boolean visible;
+	private boolean click;
 	
 	public Rabbit(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
 		this.visible = true;
+		this.click = false;
 		
 		//Loading images
 		rabbit = app.loadImage("./data/bunny.png");
@@ -36,6 +38,14 @@ public class Rabbit extends Element{
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+	
+	public boolean isClick() {
+		return click;
+	}
+	
+	public void setClick(boolean click) {
+		this.click = click;
 	}
 
 }
