@@ -18,12 +18,14 @@ public class PlayController {
 		logic.draw();
 	}
 	
-	public void dragOutfit() {
+	public void dragObjects() {
 		logic.dragOutfit();
+		logic.dragRabbit();
 	}
 	
-	public void releaseOutfit() {
+	public void releaseObjects() {
 		logic.releaseOutfit();
+		logic.releaseRabbit();
 	}
 
 }

@@ -75,12 +75,12 @@ public class Main extends PApplet{
 	
 	@Override
 	public void mouseDragged() {
-		controller.dragOutfit();
+		controller.dragObjects();
 	}
 	
 	@Override
 	public void mouseReleased() {
-		controller.releaseOutfit();
+		controller.releaseObjects();
 	}
 
 }
