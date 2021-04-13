@@ -39,23 +39,22 @@ public class Main extends PApplet{
 	public void draw() {
 		background(255);
 		
-		switch (screen) {
+		/*switch (screen) {
 		case 1:
 			startScreen.draw();
 			break;
 		case 2:
 			storyScreen.draw();
 			break;
-		case 3:
+		case 3:*/
 			playScreen.draw();
 			controller.draw();
-			break;
+		/*	break;
 		case 4:
 			finishScreen.draw();
 			break;
-		}
+		}*/
 		
-		System.out.println(mouseX + " , " + mouseY);
 	}
 	
 	public void mousePressed() {
@@ -72,6 +71,16 @@ public class Main extends PApplet{
 			if (finishScreen.clickButton()) {
 				screen = 1;
 			}
+	}
+	
+	@Override
+	public void mouseDragged() {
+		controller.dragOutfit();
+	}
+	
+	@Override
+	public void mouseReleased() {
+		controller.releaseOutfit();
 	}
 
 }

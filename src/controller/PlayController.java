@@ -16,7 +16,14 @@ public class PlayController {
 	
 	public void draw() {
 		logic.draw();
-
+	}
+	
+	public void dragOutfit() {
+		logic.dragOutfit();
+	}
+	
+	public void releaseOutfit() {
+		logic.releaseOutfit();
 	}
 
 }

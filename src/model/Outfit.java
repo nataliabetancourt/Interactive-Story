@@ -8,6 +8,7 @@ public class Outfit extends Element{
 	
 	private PImage clothes, hat, one, two;
 	private int posX2, posY2, width2, height2;
+	private boolean visible1, visible2;
 
 	public Outfit(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
@@ -16,6 +17,8 @@ public class Outfit extends Element{
 		this.posY2 = 150;
 		this.width2 = 145;
 		this.height2 = 180;
+		this.visible1 = true;
+		this.visible2 = true;
 		
 		
 		//Loading images
@@ -27,12 +30,49 @@ public class Outfit extends Element{
 	}
 	
 	public void draw() {
-		app.imageMode(PConstants.CENTER);
-		app.image(clothes, posX, posY, width, height);
-		app.image(one, posX+20, posY+60, 40, 40);
-		app.image(hat, posX2, posY2, width2, height2);
-		app.image(two, posX2+20, posY2+60, 40, 40);
+		if (visible1) {
+			app.imageMode(PConstants.CENTER);
+			app.image(clothes, posX, posY, width, height);
+			app.image(one, posX+20, posY+60, 40, 40);
+		}
 		
+		if (visible2) {
+			app.image(hat, posX2, posY2, width2, height2);
+			app.image(two, posX2+20, posY2+60, 40, 40);
+		}
 	}
+
+	public int getPosX2() {
+		return posX2;
+	}
+
+	public void setPosX2(int posX2) {
+		this.posX2 = posX2;
+	}
+
+	public int getPosY2() {
+		return posY2;
+	}
+
+	public void setPosY2(int posY2) {
+		this.posY2 = posY2;
+	}
+
+	public int getWidth2() {
+		return width2;
+	}
+
+	public int getHeight2() {
+		return height2;
+	}
+	
+	public void setVisible1(boolean visible1) {
+		this.visible1 = visible1;
+	}
+	
+	public void setVisible2(boolean visible2) {
+		this.visible2 = visible2;
+	}
+	
 
 }
