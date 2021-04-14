@@ -21,7 +21,7 @@ public class PlayController {
 	public void clickObjects() {
 		logic.clickRabbit();
 		logic.clickPlants();
-
+		logic.clickPotato();
 	}
 	
 	public void dragObjects() {

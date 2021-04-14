@@ -8,9 +8,10 @@ public class Logic {
 	
 	private PApplet app;
 	private int numPotatos, numRabbits, numPlants;
-	private int xO, yO, xO2, yO2, xR1, yR1, xR2, yR2, xPo, yPo, xRabbit, yRabbit, posArrayR;
+	private int xO, yO, xO2, yO2, xR1, yR1, xR2, yR2, xPo, yPo,xPo2, yPo2, xRabbit, yRabbit, xPotato, yPotato;
 	private int xPlant, yPlant, widthPlant, heightPlant;
 	private boolean showScale;
+	private boolean completeOutfit, completePlants;
 	
 	//Classes and Lists
 	private Flower flower;
@@ -28,13 +29,18 @@ public class Logic {
 		this.numPlants = 2;
 		this.numPotatos = 3;
 		this.numRabbits = 2;
-		this.xO = 460;				this.xR1 = 620;				this.xPo = 1100;
-		this.yO = 280;				this.yR1 = 580;				this.yPo = 580;
+		this.xO = 460;				this.xR1 = 620;				this.xPo = 1080;
+		this.yO = 280;				this.yR1 = 580;				this.yPo = 490;
 		this.xO2 = 300;				this.xR2 = 480;				this.xRabbit = 0;
 		this.yO2 = 150;				this.yR2 = 620;				this.yRabbit = 0;
-		this.posArrayR = 0;		this.xPlant = 450;			this.yPlant = 220;
-		this.widthPlant = 125;	this.heightPlant = 165;
+		this.xPlant = 450;			this.yPlant = 220;			this.widthPlant = 125;	
+		this.heightPlant = 165;	this.xPotato = 0;			this.yPotato = 0;	
+		this.xPo2 = 1050;			this.yPo2 = 530;
 		this.showScale = false;
+		
+		//Interactions complete
+		this.completeOutfit = false;
+		this.completePlants = false;
 		
 		//Classes and Lists
 		flower = new Flower(app, 830, 200, 110, 200);
@@ -60,9 +66,9 @@ public class Logic {
 		potatoBag.drawBag();
 		rabbitBag.drawBag();
 		
-		/*for (int i = 0; i <potatos.size(); i++) {
+		for (int i = 0; i <potatos.size(); i++) {
 			potatos.get(i).draw();
-		}*/
+		}
 		
 		for (int i = 0; i < rabbits.size(); i++) {
 			rabbits.get(i).draw();
@@ -85,15 +91,15 @@ public class Logic {
 	private void initPotatos() {
 		//Piling the potatos on top of the other
 		for (int i = 0; i < numPotatos; i++) {
-				xPo += 20;
-				yPo += 30;
-				potatos.add(new Potato(app, xPo, yPo, 80, 60));
+			xPo += 30;
+			yPo += 35;
+			potatos.add(new Potato(app, xPo, yPo, 80, 60));
 		}
 		
 		for (int i = 0; i < numPotatos; i++) {
-			xPo += 20;
-			yPo += 30;
-			potatos.add(new Potato(app, xPo, yPo, 80, 60));
+			xPo2 += 30;
+			yPo2 += 35;
+			potatos.add(new Potato(app, xPo2, yPo2, 80, 60));
 		}
 	}
 	
@@ -110,11 +116,6 @@ public class Logic {
 			yR2 += 20; 
 			rabbits.add(new Rabbit(app, xR2,yR2, 95, 190));
 		}
-	}
-	
-	public void clickOutfit() {
-		
-
 	}
 	
 	public void dragOutfit() {
@@ -163,59 +164,95 @@ public class Logic {
 	
 	public void clickRabbit() {
 		for (int i = 0; i < rabbits.size(); i++) {
-			if (app.dist(app.mouseX, app.mouseY, rabbits.get(i).getPosX(), rabbits.get(i).getPosY())<rabbits.get(i).getWidth()/2){
-				xRabbit = rabbits.get(i).getPosX();
-				yRabbit = rabbits.get(i).getPosY();
-				rabbits.get(i).setClick(true);
+			//Variable 
+			Rabbit r = rabbits.get(i);
+			
+			//Distance between mouse and rabbits
+			if (app.dist(app.mouseX, app.mouseY, r.getPosX(), r.getPosY())<r.getWidth()/2){
+				xRabbit = r.getPosX();
+				yRabbit = r.getPosY();
+				r.setClick(true);
 			}
 		}
 	}
 	
 	public void dragRabbit() {
-		//Distance between mouse and rabbits
 		for (int i = 0; i < rabbits.size(); i++) {
-			if (app.dist(app.mouseX, app.mouseY, rabbits.get(i).getPosX(), rabbits.get(i).getPosY())<rabbits.get(i).getWidth()/2 && rabbits.get(i).isClick()){
-				rabbits.get(i).setPosX(app.mouseX);
-				rabbits.get(i).setPosY(app.mouseY);
+			//Variable 
+			Rabbit r = rabbits.get(i);
+			
+			//Distance between mouse and rabbits
+			if (app.dist(app.mouseX, app.mouseY, r.getPosX(), r.getPosY())<r.getWidth()/2 && r.isClick()){
+				r.setPosX(app.mouseX);
+				r.setPosY(app.mouseY);
 			}
 		}
 	}
 	
 	public void releaseRabbit() {
-		//Distance between rabbit and bag
 		for (int i = 0; i < rabbits.size(); i++) {
-			if (rabbits.get(i).isClick()) {
-				if (app.dist(rabbitBag.getPosX(), rabbitBag.getPosY(), rabbits.get(i).getPosX(), rabbits.get(i).getPosY())<rabbitBag.getWidth()/2) {
+			//Variable 
+			Rabbit r = rabbits.get(i);
+			
+			//Distance between rabbit and bag
+			if (r.isClick()) {
+				if (app.dist(rabbitBag.getPosX(), rabbitBag.getPosY(), r.getPosX(), r.getPosY())<rabbitBag.getWidth()/2) {
 					rabbits.remove(i);
 					return;
 				} else {
-					rabbits.get(i).setPosX(xRabbit);
-					rabbits.get(i).setPosY(yRabbit);
+					r.setPosX(xRabbit);
+					r.setPosY(yRabbit);
 				}
 			}
-			rabbits.get(i).setClick(false);
+			r.setClick(false);
 		}
 	}
 	
+	public void clickPotato() {
+		for (int i = 0; i < potatos.size(); i++) {
+			//Variable
+			Potato p = potatos.get(i);
+			
+			//Distance between mouse and potatos
+			if (app.dist(app.mouseX, app.mouseY, p.getPosX(), p.getPosY())<p.getWidth()/2){
+				xPotato = p.getPosX();
+				yPotato = p.getPosY();
+				p.setClick(true);
+			}
+		}
+
+	}
+	
 	public void dragPotato() {
-		//Distance between mouse and potatos
-		for (int i = 0; i < rabbits.size(); i++) {
-			if (app.dist(app.mouseX, app.mouseY, potatos.get(i).getPosX(), potatos.get(i).getPosY())<potatos.get(i).getWidth()/2) {
-				potatos.get(i).setPosX(app.mouseX);
-				potatos.get(i).setPosY(app.mouseY);
+		
+		for (int i = 0; i < potatos.size(); i++) {
+			//Variable
+			Potato p = potatos.get(i);
+			
+			//Distance between mouse and potatos
+			if (app.dist(app.mouseX, app.mouseY, p.getPosX(), p.getPosY())<p.getWidth()/2 && p.isClick()) {
+				p.setPosX(app.mouseX);
+				p.setPosY(app.mouseY);
 			}
 		}
 	}
 	
 	public void releasePotato() {
-		//Distance between potato and bag
 		for (int i = 0; i < potatos.size(); i++) {
-			if (app.dist(potatoBag.getPosX(), potatoBag.getPosY(), potatos.get(i).getPosX(), potatos.get(i).getPosY())<potatoBag.getWidth()/2) {
-				potatos.get(i).setVisible(false);
-			} else {
-				potatos.get(i).setPosX(xPo);
-				potatos.get(i).setPosY(yPo);
+			//Variable
+			Potato p = potatos.get(i);
+			
+			//Distance between potato and bag
+			if (p.isClick()) {
+				if (app.dist(potatoBag.getPosX(), potatoBag.getPosY(), p.getPosX(), p.getPosY())<potatoBag.getWidth()/2) {
+					potatos.remove(i);
+					return;
+				} else {
+					p.setPosX(xPotato);
+					p.setPosY(yPotato);
+				}
 			}
+			p.setClick(false);
 		}
 	}
 
@@ -228,22 +265,25 @@ public class Logic {
 	}
 	
 	public void dragPlantBar() {
+		//Go through list of plants
 		for (int i = 0; i < plants.size(); i++) {
-			if (app.mouseX > plants.get(i).getxScale()-plants.get(i).getWidthScale()/2 && 
-					app.mouseX < plants.get(i).getxScale()+plants.get(i).getWidthScale()/2 &&
-					app.mouseY > plants.get(i).getyScale()-plants.get(i).getHeightScale()/2 
-					&& app.mouseY < plants.get(i).getyScale()+plants.get(i).getHeightScale()/2) {
-				plants.get(i).setyScale(app.mouseY);
-				plants.get(i).setScaleValue(app.abs((float) (app.map(plants.get(i).getyScale(), 105, 270, (float) 0.5,1) -1.5)));
+			//Variable 
+			Plant p = plants.get(i);
+			
+			//Sensitive area for the bar to be dragged
+			if (app.mouseX > p.getxScale()-p.getWidthScale()/2 && app.mouseX < p.getxScale()+p.getWidthScale()/2 &&
+					app.mouseY > p.getyScale()-p.getHeightScale()/2 && app.mouseY < p.getyScale()+p.getHeightScale()/2) {
+				p.setyScale(app.mouseY);
+				p.setScaleValue(app.abs((float) (app.map(p.getyScale(), 105, 270, (float) 0.5,1) -1.5)));
 			}
 			
 			//Limits so that the bar can't go beyond the line 
-			if (plants.get(i).getyScale() >= 270) {
-				plants.get(i).setyScale(270);
+			if (p.getyScale() >= 270) {
+				p.setyScale(270);
 			}
 			
-			if (plants.get(i).getyScale() <= 105) {
-				plants.get(i).setyScale(105);
+			if (p.getyScale() <= 105) {
+				p.setyScale(105);
 			}
 		}
 

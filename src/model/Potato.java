@@ -7,10 +7,11 @@ import processing.core.PImage;
 public class Potato extends Element{
 	
 	private PImage potato, bag, four;
-	private boolean visible;
+	private boolean click;
 
 	public Potato(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
+		this.click = false;
 		
 		//Loading images
 		potato = app.loadImage("./data/potato.png");
@@ -20,11 +21,8 @@ public class Potato extends Element{
 	}
 
 	public void draw() {
-		if (visible) {
-			app.imageMode(PConstants.CENTER);
-			app.image(potato, posX, posY, height, width);
-		}
-
+		app.imageMode(PConstants.CENTER);
+		app.image(potato, posX, posY, width, height);
 	}
 	
 	public void drawBag() {
@@ -34,8 +32,12 @@ public class Potato extends Element{
 
 	}
 	
-	public void setVisible(boolean visible) {
-		this.visible = visible;
+	public boolean isClick() {
+		return click;
+	}
+	
+	public void setClick(boolean click) {
+		this.click = click;
 	}
 
 }

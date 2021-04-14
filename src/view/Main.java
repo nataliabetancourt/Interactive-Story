@@ -25,7 +25,7 @@ public class Main extends PApplet{
 	@Override
 	public void setup() {
 		//Variables
-		screen = 3;
+		screen = 1;
 		
 		//Classes
 		startScreen = new StartScreen(this);
@@ -40,21 +40,21 @@ public class Main extends PApplet{
 	public void draw() {
 		background(255);
 		
-		/*switch (screen) {
+		switch (screen) {
 		case 1:
 			startScreen.draw();
 			break;
 		case 2:
 			storyScreen.draw();
 			break;
-		case 3:*/
+		case 3:
 			playScreen.draw();
 			controller.draw();
-		/*break;
+		break;
 		case 4:
 			finishScreen.draw();
 			break;
-		}*/
+		}
 		
 	}
 	
@@ -63,21 +63,20 @@ public class Main extends PApplet{
 			//Start button
 			if (startScreen.clickButton() && screen == 1) {
 				screen = 2;
-				System.out.println("main");
-			}
+			
 			//Next button
-			if (storyScreen.clickButton()) {
+			} else if (storyScreen.clickButton() && screen == 2) {
 				screen = 3;
-			}
+				
 			//Restart button
-			if (finishScreen.clickButton()) {
+			} 
+				
+			/*if (finishScreen.clickButton() && screen == 3) {
 				screen = 1;
-			}
-	}
+			}*/
 	
-	@Override
-	public void mousePressed(MouseEvent event) {
-		controller.clickObjects();
+			//Click on objects from the classes
+			controller.clickObjects();
 	}
 	
 	@Override

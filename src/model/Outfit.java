@@ -20,7 +20,6 @@ public class Outfit extends Element{
 		this.visible1 = true;
 		this.visible2 = true;
 		
-		
 		//Loading images
 		clothes = app.loadImage("./data/clothes.png");
 		hat = app.loadImage("./data/hat.png");
@@ -74,5 +73,4 @@ public class Outfit extends Element{
 		this.visible2 = visible2;
 	}
 	
-
 }
