@@ -28,6 +28,7 @@ public class Plant extends Element{
 	}
 
 	public void draw() {
+		app.tint(255, 255);
 		app.imageMode(PConstants.CENTER);
 		app.image(plant, posX, posY, width*scaleValue, height*scaleValue);
 		app.image(five, posX+20, posY+60, 40, 40);
@@ -49,10 +50,6 @@ public class Plant extends Element{
 	
 	public int getxScale() {
 		return xScale;
-	}
-	
-	public void setxScale(int xScale) {
-		this.xScale = xScale;
 	}
 	
 	public int getyScale() {

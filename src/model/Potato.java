@@ -21,11 +21,13 @@ public class Potato extends Element{
 	}
 
 	public void draw() {
+		app.tint(255, 255);
 		app.imageMode(PConstants.CENTER);
 		app.image(potato, posX, posY, width, height);
 	}
 	
 	public void drawBag() {
+		app.tint(255, 255);
 		app.imageMode(PConstants.CENTER);
 		app.image(bag, posX, posY, width, height);
 		app.image(four, posX+40, posY+60, 40, 40);

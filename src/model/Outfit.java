@@ -29,6 +29,7 @@ public class Outfit extends Element{
 	}
 	
 	public void draw() {
+		app.tint(255, 255);
 		if (visible1) {
 			app.imageMode(PConstants.CENTER);
 			app.image(clothes, posX, posY, width, height);

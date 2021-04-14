@@ -22,6 +22,7 @@ public class PlayController {
 		logic.clickRabbit();
 		logic.clickPlants();
 		logic.clickPotato();
+		logic.clickFlower();
 	}
 	
 	public void dragObjects() {
@@ -29,6 +30,7 @@ public class PlayController {
 		logic.dragRabbit();
 		logic.dragPotato();
 		logic.dragPlantBar();
+		logic.dragFlowerBar();
 	}
 	
 	public void releaseObjects() {

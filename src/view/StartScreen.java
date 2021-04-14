@@ -24,6 +24,7 @@ public class StartScreen {
 	}
 	
 	public void draw() {
+		app.tint(255, 255);
 		app.imageMode(PConstants.CORNER);
 		app.image(background, 0, 0, 1200, 700);
 		app.imageMode(PConstants.CENTER);

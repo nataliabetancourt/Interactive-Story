@@ -32,6 +32,7 @@ public class Cat {
 	}
 	
 	public void draw() {
+		app.tint(255, 255);
 		app.imageMode(PConstants.CENTER);
 		switch (cat) {
 		case 1:

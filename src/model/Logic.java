@@ -289,5 +289,32 @@ public class Logic {
 
 	}
 
+	public void clickFlower() {
+		//Distance between mouse and the flower
+		if (app.dist(app.mouseX, app.mouseY, flower.getPosX(), flower.getPosY())<flower.getWidth()/2) {
+				flower.setShowScale(true);
+		}
+	}
+	
+	public void dragFlowerBar() {
+		//Sensitive area for the bar to be dragged
+		if (app.mouseX > flower.getxScale()-flower.getWidthScale()/2 &&
+				app.mouseX < flower.getxScale()+flower.getWidthScale()/2 &&
+				app.mouseY > flower.getyScale()-flower.getHeightScale()/2 && 
+				app.mouseY < flower.getyScale()+flower.getHeightScale()/2) {
+			flower.setyScale(app.mouseY);
+			flower.setScaleValue(app.abs((float) (app.map(flower.getyScale(), 105, 270, (float) 0.5,1) -1.5)));
+		}
+		
+		//Limits so that the bar can't go beyond the line 
+		if (flower.getyScale() >= 270) {
+			flower.setyScale(270);
+		}
+		
+		if (flower.getyScale() <= 105) {
+			flower.setyScale(105);
+		}
+
+	}
 	
 }

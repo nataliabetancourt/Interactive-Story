@@ -22,6 +22,7 @@ public class PlayScreen {
 	}
 	
 	public void draw() {
+		app.tint(255, 255);
 		//Parallax (window)
 		parallax = (app.mouseX - 1400)/15;
 		
