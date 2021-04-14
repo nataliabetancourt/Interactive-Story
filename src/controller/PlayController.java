@@ -28,6 +28,7 @@ public class PlayController {
 		logic.dragOutfit();
 		logic.dragRabbit();
 		logic.dragPotato();
+		logic.dragPlantBar();
 	}
 	
 	public void releaseObjects() {

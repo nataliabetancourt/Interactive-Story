@@ -56,8 +56,6 @@ public class Logic {
 	public void draw() {
 		cat.draw();
 		flower.draw();
-		//plant1.draw(1);
-		//plant2.draw(2);
 		outfit.draw();
 		potatoBag.drawBag();
 		rabbitBag.drawBag();
@@ -81,14 +79,7 @@ public class Logic {
 			xPlant += 250;
 			plants.add(new Plant(app, xPlant, yPlant, widthPlant, heightPlant));
 		}
-	}
-
-	public void clickPlants() {
-		for (int i = 0; i < plants.size(); i++) {
-			if (app.dist(app.mouseX, app.mouseY, plants.get(i).posX, plants.get(i).getPosY())<plants.get(i).getWidth()/2) {
-				plants.get(i).setShowScale(true);
-			}
-		}
+		
 	}
 	
 	private void initPotatos() {
@@ -228,6 +219,35 @@ public class Logic {
 		}
 	}
 
+	public void clickPlants() {
+		for (int i = 0; i < plants.size(); i++) {
+			if (app.dist(app.mouseX, app.mouseY, plants.get(i).posX, plants.get(i).getPosY())<plants.get(i).getWidth()/2) {
+				plants.get(i).setShowScale(true);
+			}
+		}
+	}
+	
+	public void dragPlantBar() {
+		for (int i = 0; i < plants.size(); i++) {
+			if (app.mouseX > plants.get(i).getxScale()-plants.get(i).getWidthScale()/2 && 
+					app.mouseX < plants.get(i).getxScale()+plants.get(i).getWidthScale()/2 &&
+					app.mouseY > plants.get(i).getyScale()-plants.get(i).getHeightScale()/2 
+					&& app.mouseY < plants.get(i).getyScale()+plants.get(i).getHeightScale()/2) {
+				plants.get(i).setyScale(app.mouseY);
+				plants.get(i).setScaleValue(app.abs((float) (app.map(plants.get(i).getyScale(), 105, 270, (float) 0.5,1) -1.5)));
+			}
+			
+			//Limits so that the bar can't go beyond the line 
+			if (plants.get(i).getyScale() >= 270) {
+				plants.get(i).setyScale(270);
+			}
+			
+			if (plants.get(i).getyScale() <= 105) {
+				plants.get(i).setyScale(105);
+			}
+		}
+
+	}
 
 	
 }
