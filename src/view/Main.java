@@ -25,7 +25,7 @@ public class Main extends PApplet{
 	@Override
 	public void setup() {
 		//Variables
-		screen = 3;
+		screen = 4;
 		
 		//Classes
 		startScreen = new StartScreen(this);

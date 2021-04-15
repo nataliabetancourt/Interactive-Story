@@ -10,9 +10,8 @@ public class Logic {
 	private int numPotatos, numRabbits, numPlants;
 	private int xO, yO, xO2, yO2, xR1, yR1, xR2, yR2, xPo, yPo,xPo2, yPo2, xRabbit, yRabbit, xPotato, yPotato;
 	private int xPlant, yPlant, widthPlant, heightPlant;
-	private boolean showScale;
 	private boolean completeOutfit, completePlants, completeFlower, completeRabbits, completePotatos, interactionsComplete;
-	private String [] storyTXT, words;
+	private String [] storyTXT;
 	private ArrayList<String> elementsText, storyList;
 	
 	//Classes and Lists
@@ -39,7 +38,6 @@ public class Logic {
 		this.xPlant = 450;			this.yPlant = 220;			this.widthPlant = 125;	
 		this.heightPlant = 165;	this.xPotato = 0;			this.yPotato = 0;	
 		this.xPo2 = 1050;			this.yPo2 = 530;
-		this.showScale = false;
 		
 		//Interactions complete
 		this.completeOutfit = false;
@@ -70,13 +68,9 @@ public class Logic {
 		elementsText = new ArrayList<>();
 		storyList = new ArrayList<>();
 		
-		//Split text
+		//Make text an array
 		for (int i = 0; i < storyTXT.length; i++) {
-			words = app.split(storyTXT[i], " ");
-		}
-		
-		for (int i = 0; i < words.length; i++) {
-			storyList.add(words[i]);
+			storyList.add(storyTXT[i]);
 		}
 		
 		//Array list of elements text
@@ -109,10 +103,6 @@ public class Logic {
 		for (int i = 0; i < plants.size(); i++) {
 			plants.get(i).draw();
 
-		}
-		
-		for (int i = 0; i < elementsText.size(); i++) {
-			System.out.println(elementsText.get(i));
 		}
 		
 		interactionsFinished();
