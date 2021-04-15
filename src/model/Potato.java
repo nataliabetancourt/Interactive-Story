@@ -8,6 +8,7 @@ public class Potato extends Element{
 	
 	private PImage potato, bag, four;
 	private boolean click;
+	private String potatoText;
 
 	public Potato(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
@@ -17,6 +18,8 @@ public class Potato extends Element{
 		potato = app.loadImage("./data/potato.png");
 		bag = app.loadImage("./data/potatobag.png");
 		four = app.loadImage("./data/4.png");
+		
+		potatoText = "papas";
 
 	}
 
@@ -40,6 +43,10 @@ public class Potato extends Element{
 	
 	public void setClick(boolean click) {
 		this.click = click;
+	}
+	
+	public String getPotatoText() {
+		return potatoText;
 	}
 
 }

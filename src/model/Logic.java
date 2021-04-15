@@ -12,10 +12,13 @@ public class Logic {
 	private int xPlant, yPlant, widthPlant, heightPlant;
 	private boolean showScale;
 	private boolean completeOutfit, completePlants, completeFlower, completeRabbits, completePotatos, interactionsComplete;
+	private String [] storyTXT, words;
+	private ArrayList<String> elementsText, storyList;
 	
 	//Classes and Lists
 	private Flower flower;
 	private Outfit outfit;
+	private Plant plant;
 	private Potato potatoBag;
 	private Rabbit rabbitBag;
 	private ArrayList<Plant> plants;
@@ -48,6 +51,7 @@ public class Logic {
 		
 		//Classes and Lists
 		flower = new Flower(app, 830, 200, 110, 200);
+		plant = new Plant(app, 0, 0, 0, 0);
 		outfit = new Outfit(app, 460, 280, 205, 215);
 		potatoBag = new Potato(app, 950, 420, 205, 200);
 		rabbitBag = new Rabbit(app, 750, 420, 205, 200);
@@ -60,6 +64,30 @@ public class Logic {
 		initPotatos();
 		initRabbits();
 		initPlants();
+		
+		//Strings from text
+		storyTXT = app.loadStrings("./data/Story.txt");
+		elementsText = new ArrayList<>();
+		storyList = new ArrayList<>();
+		
+		//Split text
+		for (int i = 0; i < storyTXT.length; i++) {
+			words = app.split(storyTXT[i], " ");
+		}
+		
+		for (int i = 0; i < words.length; i++) {
+			storyList.add(words[i]);
+		}
+		
+		//Array list of elements text
+		elementsText.add(flower.getFlowerText());
+		elementsText.add(outfit.getOutfit1());
+		elementsText.add(outfit.getOutfit2());
+		elementsText.add(outfit.getOutfit3());
+		elementsText.add(rabbitBag.getRabbitText());
+		elementsText.add(potatoBag.getPotatoText());
+		elementsText.add(plant.getPlantText());
+		elementsText.add(cat.getCatText());
 
 	}
 	
@@ -83,11 +111,14 @@ public class Logic {
 
 		}
 		
+		for (int i = 0; i < elementsText.size(); i++) {
+			System.out.println(elementsText.get(i));
+		}
+		
 		interactionsFinished();
 		
 		if (completeFlower && completeRabbits && completeOutfit && completePotatos && completePlants) {
 			interactionsComplete = true;
-			System.out.println("true complete");
 		}
 	}
 	
@@ -342,38 +373,52 @@ public class Logic {
 		//If all rabbits were eliminated from putting them in the bag
 		if (rabbits.size() == 0) {
 			completeRabbits = true;
-			System.out.println("true rabbits");
 		}
 		
 		//If all potatos were eliminated from putting them in the bag
 		if (potatos.size() == 0) {
 			completePotatos = true;
-			System.out.println("true potatos");
 		}
 		
 		//If the cat is completely dressed
 		if (cat.getCat() == 2) {
 			completeOutfit = true;
-			System.out.println("true cat");
 		}
 		
 		//If flower is at complete opacity
 		if (flower.getyScale() <= 105) {
 			completeFlower = true;
-			System.out.println("true flower");
 		}
 		
 		//If plants are at complete size
 		for (int i = 0; i < plants.size(); i++) {
 			if (plants.get(i).getyScale() <= 105) {
 				completePlants = true;
-				System.out.println("true plants");
 			}
 		}
 	}
 
 	public boolean isInteractionsComplete() {
 		return interactionsComplete;
+	}
+	
+	public void textUpperCase() {
+		for (int i = 0; i < storyList.size(); i++) {
+			for (int j = 0; j < elementsText.size(); j++) {
+				if (storyList.get(i).equals(elementsText.get(j))) {
+					storyList.get(i).toUpperCase();
+				}
+			}
+		}
+		
+		String [] newText = new String [storyList.size()];
+		
+		for (int j = 0; j < storyList.size(); j++) {
+			newText[j] = String.join(" ", storyList.get(j));
+		}
+		
+		app.saveStrings("./data/NewStoryTXT.txt", newText);
+	
 	}
 	
 }

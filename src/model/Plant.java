@@ -10,7 +10,8 @@ public class Plant extends Element{
 	private boolean showScale;
 	private int xScale, yScale, widthScale, heightScale;
 	private float scaleValue;
-
+	private String plantText;
+	
 	public Plant(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
 		this.showScale = false;
@@ -24,6 +25,8 @@ public class Plant extends Element{
 		plant = app.loadImage("./data/plant.png");
 		five = app.loadImage("./data/5.png");
 		seven = app.loadImage("./data/7.png");
+		
+		plantText = "suculentas";
 		
 	}
 
@@ -71,4 +74,9 @@ public class Plant extends Element{
 	public void setScaleValue(float scaleValue) {
 		this.scaleValue = scaleValue;
 	}
+	
+	public String getPlantText() {
+		return plantText;
+	}
+	
 }

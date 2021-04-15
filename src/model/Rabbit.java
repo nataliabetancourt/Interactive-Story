@@ -8,6 +8,7 @@ public class Rabbit extends Element{
 
 	private PImage rabbit, bag, three;
 	private boolean click;
+	private String rabbitText;
 	
 	public Rabbit(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
@@ -17,6 +18,8 @@ public class Rabbit extends Element{
 		rabbit = app.loadImage("./data/bunny.png");
 		bag = app.loadImage("./data/bunnybag.png");
 		three = app.loadImage("./data/3.png");
+		
+		rabbitText = "conejos";
 
 	}
 	
@@ -41,6 +44,10 @@ public class Rabbit extends Element{
 	
 	public void setClick(boolean click) {
 		this.click = click;
+	}
+	
+	public String getRabbitText() {
+		return rabbitText;
 	}
 
 }

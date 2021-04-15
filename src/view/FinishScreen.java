@@ -1,5 +1,6 @@
 package view;
 
+import controller.PlayController;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -7,7 +8,7 @@ import processing.core.PImage;
 public class FinishScreen {
 	
 	private PApplet app;
-	private PImage background, restart;
+	private PImage background, save;
 	private int xButton, yButton, width, height;
 	
 	public FinishScreen(PApplet app) {
@@ -20,7 +21,7 @@ public class FinishScreen {
 		
 		//Loading images
 		background = app.loadImage("./data/gameover.jpg");
-		restart = app.loadImage("./data/restart.png");
+		save = app.loadImage("./data/guardar.png");
 		
 	}
 
@@ -29,14 +30,13 @@ public class FinishScreen {
 		app.imageMode(PConstants.CORNER);
 		app.image(background, 0, 0, 1200, 700);
 		app.imageMode(PConstants.CENTER);
-		app.image(restart, xButton, yButton, width, height);
+		app.image(save, xButton, yButton, width, height);
 
 	}
 	
-	public boolean clickButton() {
+	public boolean clickButton(int screen) {
 		if (app.mouseX > xButton-width/2 && app.mouseX < xButton+width/2 && 
-				app.mouseY > yButton-width/2 && app.mouseY < yButton+width/2) {
-		}
+				app.mouseY > yButton-width/2 && app.mouseY < yButton+width/2 && screen == 4) {}
 		return true;
 	}
 

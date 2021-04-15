@@ -25,7 +25,7 @@ public class Main extends PApplet{
 	@Override
 	public void setup() {
 		//Variables
-		screen = 1;
+		screen = 3;
 		
 		//Classes
 		startScreen = new StartScreen(this);
@@ -70,13 +70,14 @@ public class Main extends PApplet{
 			//Next button
 			} else if (storyScreen.clickButton() && screen == 2) {
 				screen = 3;
-				
-			//Restart button
+			
 			} 
 				
-			/*if (finishScreen.clickButton() && screen == 3) {
-				screen = 1;
-			}*/
+			//Save button
+			if (finishScreen.clickButton(screen)) {
+				controller.textChange();
+				System.out.println("click");
+			}
 	
 			//Click on objects from the classes
 			controller.clickObjects();

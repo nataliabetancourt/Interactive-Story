@@ -13,8 +13,6 @@ public class PlayController {
 		this.app = app;
 
 		logic = new Logic(app);
-		
-		
 	}
 	
 	public void draw() {
@@ -45,5 +43,10 @@ public class PlayController {
 	public boolean complete() {
 			interactionsComplete = logic.isInteractionsComplete();
 		return interactionsComplete;
+	}
+
+	public void textChange() {
+		logic.textUpperCase();
+		
 	}
 }

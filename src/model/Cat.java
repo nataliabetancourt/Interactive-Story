@@ -10,6 +10,7 @@ public class Cat {
 	private PImage cat1, cat2, cat3, cat4;
 	private int posX, posY, width, height;
 	private int cat;
+	private String catText;
 	
 	public Cat(PApplet app) {
 		this.app = app;
@@ -28,6 +29,8 @@ public class Cat {
 		cat3 = app.loadImage("./data/cat3.png");
 		//Cat with cape and no cape
 		cat4 = app.loadImage("./data/cat4.png");
+		
+		catText = "gato";
 		
 	}
 	
@@ -73,6 +76,10 @@ public class Cat {
 	
 	public void setCat(int cat) {
 		this.cat = cat;
+	}
+	
+	public String getCatText() {
+		return catText;
 	}
 
 }

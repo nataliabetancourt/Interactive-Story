@@ -9,6 +9,7 @@ public class Outfit extends Element{
 	private PImage clothes, hat, one, two;
 	private int posX2, posY2, width2, height2;
 	private boolean visible1, visible2;
+	private String outfit1, outfit2, outfit3;
 
 	public Outfit(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
@@ -25,6 +26,11 @@ public class Outfit extends Element{
 		hat = app.loadImage("./data/hat.png");
 		one = app.loadImage("./data/1.png");
 		two = app.loadImage("./data/2.png");
+		
+		//Words from story
+		outfit1 = "abrigo elegante";
+		outfit2 = "sombrero";
+		outfit3 = "botas";
 
 	}
 	
@@ -72,6 +78,18 @@ public class Outfit extends Element{
 	
 	public void setVisible2(boolean visible2) {
 		this.visible2 = visible2;
+	}
+
+	public String getOutfit1() {
+		return outfit1;
+	}
+
+	public String getOutfit2() {
+		return outfit2;
+	}
+
+	public String getOutfit3() {
+		return outfit3;
 	}
 	
 }

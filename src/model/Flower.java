@@ -10,6 +10,7 @@ public class Flower extends Element{
 	private boolean showScale;
 	private int xScale, yScale, widthScale, heightScale, opacity;
 	private float scaleValue;
+	private String flowerText;
 
 	public Flower(PApplet app, int posX, int posY, int width, int height) {
 		super(app, posX, posY, width, height);
@@ -24,6 +25,8 @@ public class Flower extends Element{
 		//Loading images
 		flowers = app.loadImage("./data/flowers.png");
 		six = app.loadImage("./data/6.png");
+		
+		flowerText = "flores";
 
 	}
 	
@@ -71,5 +74,9 @@ public class Flower extends Element{
 	
 	public int getHeightScale() {
 		return heightScale;
+	}
+	
+	public String getFlowerText() {
+		return flowerText;
 	}
 }
