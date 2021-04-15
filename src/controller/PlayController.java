@@ -7,11 +7,14 @@ public class PlayController {
 	
 	private PApplet app;
 	private Logic logic;
+	private boolean interactionsComplete;
 	
 	public PlayController(PApplet app) {
 		this.app = app;
-		
+
 		logic = new Logic(app);
+		
+		
 	}
 	
 	public void draw() {
@@ -39,4 +42,8 @@ public class PlayController {
 		logic.releasePotato();
 	}
 
+	public boolean complete() {
+			interactionsComplete = logic.isInteractionsComplete();
+		return interactionsComplete;
+	}
 }

@@ -11,7 +11,7 @@ public class Logic {
 	private int xO, yO, xO2, yO2, xR1, yR1, xR2, yR2, xPo, yPo,xPo2, yPo2, xRabbit, yRabbit, xPotato, yPotato;
 	private int xPlant, yPlant, widthPlant, heightPlant;
 	private boolean showScale;
-	private boolean completeOutfit, completePlants;
+	private boolean completeOutfit, completePlants, completeFlower, completeRabbits, completePotatos, interactionsComplete;
 	
 	//Classes and Lists
 	private Flower flower;
@@ -41,6 +41,10 @@ public class Logic {
 		//Interactions complete
 		this.completeOutfit = false;
 		this.completePlants = false;
+		this.completeFlower = false;
+		this.completeRabbits = false;
+		this.completePotatos = false;
+		this.interactionsComplete = false;
 		
 		//Classes and Lists
 		flower = new Flower(app, 830, 200, 110, 200);
@@ -77,6 +81,13 @@ public class Logic {
 		for (int i = 0; i < plants.size(); i++) {
 			plants.get(i).draw();
 
+		}
+		
+		interactionsFinished();
+		
+		if (completeFlower && completeRabbits && completeOutfit && completePotatos && completePlants) {
+			interactionsComplete = true;
+			System.out.println("true complete");
 		}
 	}
 	
@@ -284,6 +295,11 @@ public class Logic {
 			
 			if (p.getyScale() <= 105) {
 				p.setyScale(105);
+				
+				//If plant is to full size, complete interaction
+				if (p.getyScale() == 105) {
+					p.setShowScale(false);
+				}
 			}
 		}
 
@@ -313,8 +329,51 @@ public class Logic {
 		
 		if (flower.getyScale() <= 105) {
 			flower.setyScale(105);
+			
+			//If flower is at complete opacity, complete interaction
+			if (flower.getyScale() <= 105) {
+				flower.setShowScale(false);
+			}
 		}
 
+	}
+
+	private void interactionsFinished() {
+		//If all rabbits were eliminated from putting them in the bag
+		if (rabbits.size() == 0) {
+			completeRabbits = true;
+			System.out.println("true rabbits");
+		}
+		
+		//If all potatos were eliminated from putting them in the bag
+		if (potatos.size() == 0) {
+			completePotatos = true;
+			System.out.println("true potatos");
+		}
+		
+		//If the cat is completely dressed
+		if (cat.getCat() == 2) {
+			completeOutfit = true;
+			System.out.println("true cat");
+		}
+		
+		//If flower is at complete opacity
+		if (flower.getyScale() <= 105) {
+			completeFlower = true;
+			System.out.println("true flower");
+		}
+		
+		//If plants are at complete size
+		for (int i = 0; i < plants.size(); i++) {
+			if (plants.get(i).getyScale() <= 105) {
+				completePlants = true;
+				System.out.println("true plants");
+			}
+		}
+	}
+
+	public boolean isInteractionsComplete() {
+		return interactionsComplete;
 	}
 	
 }

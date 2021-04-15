@@ -50,6 +50,9 @@ public class Main extends PApplet{
 		case 3:
 			playScreen.draw();
 			controller.draw();
+			if (controller.complete()) {
+				screen = 4;
+			}
 		break;
 		case 4:
 			finishScreen.draw();
